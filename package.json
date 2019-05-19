@@ -1,0 +1,40 @@
+{
+    "name": "task-scheduler",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "tsc --watch",
+        "test": "mocha --require source-map-support/register dist/test/**/*.js",
+        "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    },
+    "devDependencies": {
+        "@types/assert": "^1.4.2",
+        "@types/chai": "^4.1.7",
+        "@types/mocha": "^5.2.6",
+        "@types/sinon": "^7.0.11",
+        "chai": "^4.2.0",
+        "coveralls": "^2.13.1",
+        "mocha": "^6.1.4",
+        "mocha-lcov-reporter": "^1.3.0",
+        "nyc": "^14.1.1",
+        "sinon": "^7.3.2",
+        "source-map-support": "^0.5.12",
+        "tsconfig-paths": "^3.8.0"
+    },
+    "dependencies": {
+        "@hediet/std": "^0.4.0",
+        "@hediet/typed-json-rpc": "^0.6.1",
+        "@types/lru-cache": "^5.1.0",
+        "@types/mkdirp": "^0.5.2",
+        "@types/node": "^12.0.0",
+        "io-ts-types": "^0.4.7",
+        "js-joda": "^1.10.1",
+        "lru-cache": "^5.1.1",
+        "mkdirp": "^0.5.1",
+        "monocle-ts": "^1.7.2",
+        "newtype-ts": "^0.2.4",
+        "sqlite3": "^4.0.8",
+        "typeorm": "^0.2.17"
+    }
+}

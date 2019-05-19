@@ -1,0 +1,31 @@
+@startuml Main
+
+hide members
+
+interface TaskSource
+TaskSource <|-- StaticTaskSource
+TaskSource <|-- DbTaskSource
+
+DbTaskSource ..> DbConnection
+DbTaskExecutionLog ..> DbConnection
+
+interface ActiveTasksProvider
+ActiveTasksProvider <|-- ScheduledTasksProvider
+ScheduledTasksProvider ..> TaskSchedule
+
+interface TaskSchedule
+TaskSchedule <|-- TaskScheduleFromTaskSource
+TaskScheduleFromTaskSource ..> TaskSource
+
+class TaskExecutionController
+TaskExecutionController ..> ActiveTasksProvider
+TaskExecutionController ..> LoggingTaskExecutioner
+
+LoggingTaskExecutioner ..> DbTaskExecutionLog
+LoggingTaskExecutioner ..> TaskExecutioner
+
+interface TaskExecutioner
+TaskExecutioner <|-- LocalTaskExecutioner
+
+
+@enduml
