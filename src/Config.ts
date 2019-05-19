@@ -1,6 +1,6 @@
 import { type, string } from "io-ts";
 import { readFileSync } from "fs";
-import { join, resolve } from "path";
+import { join, resolve, dirname } from "path";
 
 export class ConfigProvider {
     private readonly config: typeof ConfigJsonEnc["_A"];
@@ -11,9 +11,10 @@ export class ConfigProvider {
         const config = ConfigJsonEnc.decode(obj).getOrElseL(e => {
             throw new Error(e.map(x => x.message).join(", "));
         });
+        const configDir = dirname(configPath);
         this.config = {
-            databasePath: resolve(configPath, config.databasePath),
-            logDirectory: resolve(configPath, config.logDirectory)
+            databasePath: resolve(configDir, config.databasePath),
+            logDirectory: resolve(configDir, config.logDirectory)
         };
     }
 
