@@ -1,5 +1,6 @@
 import { type, string } from "io-ts";
 import { readFileSync } from "fs";
+import { join, resolve } from "path";
 
 export class ConfigProvider {
     private readonly config: typeof ConfigJsonEnc["_A"];
@@ -7,9 +8,13 @@ export class ConfigProvider {
     constructor(private readonly configPath: string) {
         const c = readFileSync(configPath, { encoding: "utf8" });
         const obj = JSON.parse(c);
-        this.config = ConfigJsonEnc.decode(obj).getOrElseL(e => {
+        const config = ConfigJsonEnc.decode(obj).getOrElseL(e => {
             throw new Error(e.map(x => x.message).join(", "));
         });
+        this.config = {
+            databasePath: resolve(configPath, config.databasePath),
+            logDirectory: resolve(configPath, config.logDirectory)
+        };
     }
 
     getConfig(): typeof ConfigJsonEnc["_A"] {
