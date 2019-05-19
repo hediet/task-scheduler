@@ -5,6 +5,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "tsc --watch",
+        "build": "tsc",
         "test": "mocha --require source-map-support/register dist/test/**/*.js",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
     },
