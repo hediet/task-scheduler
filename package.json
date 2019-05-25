@@ -8,7 +8,7 @@
         "build": "tsc",
         "test": "mocha --require source-map-support/register dist/test/**/*.js",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-        "run": "node ./dist/src/index"
+        "start": "node ./dist/src/index"
     },
     "devDependencies": {
         "@types/assert": "^1.4.2",
